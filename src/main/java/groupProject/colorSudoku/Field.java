@@ -7,8 +7,6 @@ import javax.swing.JLabel;
 
 /**
  * This class represents a field on the SudokuPanel.
- *
- * @author Eric Beijer
  */
 public class Field extends JLabel {
 	private int x; // X position in game.

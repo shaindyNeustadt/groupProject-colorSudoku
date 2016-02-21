@@ -1,7 +1,6 @@
 package groupProject.colorSudoku;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -33,13 +32,13 @@ public class ColorChooser extends JPanel {
 				colors[x][y].setOpaque(true);
 				colors[x][y].setBackground(colorArray[x][y]);
 				// colors[x][y].setPreferredSize(new Dimension(15, 15));
-				/*colors[x][y].addMouseListener(new MouseAdapter() {
+				colors[x][y].addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
-							//System.out.println(colors[evt.getX()/200][evt.getY()/200]);
-							System.out.println(evt.getX()/75 + " " + evt.getY()/75);
-							
+						// System.out.println(colors[evt.getX()/200][evt.getY()/200]);
+						System.out.println(evt.getX() / 75 + " " + evt.getY() / 75);
+
 					}
-					});*/
+				});
 				add(colors[x][y]);
 			}
 		}
