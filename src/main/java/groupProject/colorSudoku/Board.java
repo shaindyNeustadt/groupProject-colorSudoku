@@ -10,17 +10,15 @@ import java.util.List;
  * input.
  */
 public class Board {
-	// extends Observable {
 	private int[][] solution; // Generated solution.
 	private int[][] game; // Generated game with user input.
-	// private boolean[][] check; // Holder for checking validity of game.
-
+	
 	/**
 	 * Constructor
 	 */
 	public Board() {
 		newGame();
-		// check = new boolean[9][9];
+		
 	}
 
 	public int[][] getGameBoard() {
@@ -33,9 +31,7 @@ public class Board {
 	public void newGame() {
 		solution = generateSolution(new int[9][9], 0);
 		game = generateGame(copy(solution));
-		// setChanged();
-		// notifyObservers(UpdateAction.NEW_GAME);
-	}
+		}
 
 	/**
 	 * Checks user input against the solution and puts it into a check matrix.

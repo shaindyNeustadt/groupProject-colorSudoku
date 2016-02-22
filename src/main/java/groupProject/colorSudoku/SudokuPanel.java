@@ -39,9 +39,9 @@ public class SudokuPanel extends JPanel {
 		for (int x = 0; x < 9; x++) {
 			for (int y = 0; y < 9; y++) {
 				boxes[x][y] = new Box(x, y, colorsPanel);
-				boxes[x][y].setBorder(BorderFactory.createCompoundBorder(
-						BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.WHITE, Color.BLACK),
-						BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)));
+				//boxes[x][y].setBorder(BorderFactory.createCompoundBorder(
+				//		BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.WHITE, Color.BLACK),
+				//		BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)));
 				final int i = x;
 				final int j = y;
 				boxes[x][y].addActionListener(new ActionListener() {

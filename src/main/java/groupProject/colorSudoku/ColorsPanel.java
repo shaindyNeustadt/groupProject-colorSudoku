@@ -39,7 +39,7 @@ public class ColorsPanel extends JPanel {
 			buttons[i] = new JButton();
 			buttons[i].setBackground(colorArray[i]);
 			buttons[i].setBorder(BorderFactory.createCompoundBorder(
-					BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.WHITE, Color.BLACK),
+				BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.WHITE, Color.BLACK),
 					BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)));
 			final int j = i;
 			buttons[i].addActionListener(new ActionListener() {
