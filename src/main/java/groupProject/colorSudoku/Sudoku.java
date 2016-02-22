@@ -78,7 +78,8 @@ public class Sudoku extends JFrame {
 		});
 		timer.start();
 
-		OptionsPanel optionsPanel = new OptionsPanel(sudokuPanel, timerCount);
+		OptionsPanel optionsPanel = new OptionsPanel(sudokuPanel,
+				sudokuGenerator);
 
 		buttonPanel.add(timerLabel);
 		buttonPanel.add(check);

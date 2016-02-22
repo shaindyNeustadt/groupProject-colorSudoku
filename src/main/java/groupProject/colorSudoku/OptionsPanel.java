@@ -5,31 +5,42 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 
 public class OptionsPanel extends JPanel {
 
-	JLabel picture, easy, medium, hard, check, help;
-	Integer timerCount;
+	private JLabel picture, easy, medium, hard, check, help;
+	private int timerCount;
+	private JLabel timerLabel;
+	private Timer timer;
+	private SudokuPanel sudokuPanel;
+	private SudokuGenerator sudokuGenerator;
 
-	public OptionsPanel(final SudokuPanel sudokuPanel, Integer timer) {
+	public OptionsPanel(final SudokuPanel sudokuPanel,
+			final SudokuGenerator sudokuGenerator) {
 
 		// this.setSize(new Dimension(100, 100));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBackground(Color.WHITE);
+		this.sudokuPanel = sudokuPanel;
+		this.sudokuGenerator = sudokuGenerator;
 
 		JPanel panel1 = new JPanel();
 		panel1.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -39,11 +50,31 @@ public class OptionsPanel extends JPanel {
 		panel2.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panel2.setBackground(Color.WHITE);
 
-		this.timerCount = timer;
+		setUpPicture();
+		setUpDifficulties();
+		setUpChecker();
+		setUpHelp();
+		setTimer();
+
+		panel1.add(easy);
+		panel1.add(medium);
+		panel1.add(hard);
+		panel2.add(check);
+		panel2.add(help);
+		panel2.add(timerLabel);
+		add(picture);
+		add(panel1);
+		add(panel2);
+
+	}
+
+	public void setUpPicture() {
 		this.picture = new JLabel();
 		this.picture.setIcon(new ImageIcon(new ImageIcon("./image.jpg")
 				.getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH)));
+	}
 
+	public void setUpDifficulties() {
 		easy = new JLabel();
 		easy.setBackground(Color.WHITE);
 		easy.setIcon(new ImageIcon(new ImageIcon("./easy.jpg").getImage()
@@ -51,7 +82,7 @@ public class OptionsPanel extends JPanel {
 		easy.addMouseListener(new MouseListener() {
 
 			public void mouseClicked(MouseEvent arg0) {
-				sudokuPanel.setNewBoard(35);
+				sudokuPanel.setNewBoard(25);
 				timerCount = 0;
 			}
 
@@ -99,7 +130,7 @@ public class OptionsPanel extends JPanel {
 		hard.addMouseListener(new MouseListener() {
 
 			public void mouseClicked(MouseEvent arg0) {
-				sudokuPanel.setNewBoard(35);
+				sudokuPanel.setNewBoard(45);
 				timerCount = 0;
 			}
 
@@ -115,7 +146,9 @@ public class OptionsPanel extends JPanel {
 			public void mouseReleased(MouseEvent arg0) {
 			}
 		});
+	}
 
+	public void setUpChecker() {
 		check = new JLabel();
 		check.setBackground(Color.WHITE);
 		check.setIcon(new ImageIcon(new ImageIcon("./check3.jpg").getImage()
@@ -123,8 +156,13 @@ public class OptionsPanel extends JPanel {
 		check.addMouseListener(new MouseListener() {
 
 			public void mouseClicked(MouseEvent arg0) {
-				sudokuPanel.setNewBoard(35);
-				timerCount = 0;
+				timer.stop();
+				if (sudokuGenerator.checkBoard()) {
+					JOptionPane.showMessageDialog(null, "YOU WON!!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Keep Trying!!");
+				}
+				timer.start();
 			}
 
 			public void mouseEntered(MouseEvent arg0) {
@@ -139,7 +177,9 @@ public class OptionsPanel extends JPanel {
 			public void mouseReleased(MouseEvent arg0) {
 			}
 		});
+	}
 
+	public void setUpHelp() {
 		help = new JLabel();
 		help.setBackground(Color.WHITE);
 		help.setIcon(new ImageIcon(new ImageIcon("./help.jpg").getImage()
@@ -147,8 +187,7 @@ public class OptionsPanel extends JPanel {
 		help.addMouseListener(new MouseListener() {
 
 			public void mouseClicked(MouseEvent arg0) {
-				sudokuPanel.setNewBoard(35);
-				timerCount = 0;
+
 			}
 
 			public void mouseEntered(MouseEvent arg0) {
@@ -163,14 +202,29 @@ public class OptionsPanel extends JPanel {
 			public void mouseReleased(MouseEvent arg0) {
 			}
 		});
+	}
 
-		panel1.add(easy);
-		panel1.add(medium);
-		panel1.add(hard);
-		panel2.add(check);
-		panel2.add(help);
-		add(picture);
-		add(panel1);
-		add(panel2);
+	public void setTimer() {
+		timerLabel = new JLabel();
+		timerLabel.setBackground(Color.WHITE);
+		timerLabel.setIcon(new ImageIcon(new ImageIcon("./timer2.png")
+				.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
+		timerLabel.setIconTextGap(-80);
+		timer = new Timer(1000, new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				timerCount++;
+
+				long hours = TimeUnit.MINUTES.toHours(timerCount);
+				long remainMinute = timerCount
+						- TimeUnit.HOURS.toMinutes(hours);
+				timerLabel.setText(String.format("%02d", hours) + ":"
+						+ String.format("%02d", remainMinute));
+				timerLabel.setFont(new Font("Calibri", Font.BOLD, 25));
+			}
+
+		});
+		timer.start();
 	}
 }
