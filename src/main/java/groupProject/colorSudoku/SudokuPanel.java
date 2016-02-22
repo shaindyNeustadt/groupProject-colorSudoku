@@ -1,7 +1,6 @@
 package groupProject.colorSudoku;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +15,6 @@ import javax.swing.border.EtchedBorder;
 
 public class SudokuPanel extends JPanel {
 
-	// private Board board;
-	private ColorsPanel colorsPanel;
 	private JPanel[][] panels;
 	private Box[][] boxes;
 	private SudokuGenerator sudoku;
@@ -28,14 +25,14 @@ public class SudokuPanel extends JPanel {
 		setBackground(Color.WHITE);
 
 		this.sudoku = sudokuGenerator;
-		this.colorsPanel = colorsPanel;
 		this.panels = new JPanel[3][3];
 
 		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
 				panels[x][y] = new JPanel();
 				panels[x][y].setLayout(new GridLayout(3, 3));
-				panels[x][y].setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+				panels[x][y].setBorder(BorderFactory.createLineBorder(
+						Color.BLACK, 3));
 				add(panels[x][y]);
 			}
 		}
@@ -43,7 +40,7 @@ public class SudokuPanel extends JPanel {
 
 		for (int x = 0; x < 9; x++) {
 			for (int y = 0; y < 9; y++) {
-				boxes[x][y] = new Box(x, y, colorsPanel);
+				boxes[x][y] = new Box();
 				boxes[x][y].setBorder(BorderFactory.createCompoundBorder(
 						BorderFactory.createBevelBorder(BevelBorder.RAISED,
 								Color.WHITE, Color.BLACK), BorderFactory
@@ -70,11 +67,9 @@ public class SudokuPanel extends JPanel {
 					}
 
 					public void mouseExited(MouseEvent arg0) {
-
 					}
 
 					public void mousePressed(MouseEvent arg0) {
-
 					}
 
 					public void mouseReleased(MouseEvent arg0) {
@@ -84,12 +79,11 @@ public class SudokuPanel extends JPanel {
 							}
 						}
 					}
-
 				});
 				panels[x / 3][y / 3].add(boxes[x][y]);
 			}
 		}
-		setNewBoard(30);
+		setNewBoard(0);
 	}
 
 	public void setNewBoard(int difficulty) {

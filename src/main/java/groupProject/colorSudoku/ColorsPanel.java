@@ -50,14 +50,15 @@ public class ColorsPanel extends JPanel {
 				public void actionPerformed(ActionEvent arg0) {
 					if (lastColor != 9) {
 						buttons[lastColor].setBorder(BorderFactory.createCompoundBorder(
-								BorderFactory.createBevelBorder(BevelBorder.RAISED,
-										Color.WHITE, Color.BLACK), BorderFactory
+								BorderFactory.createBevelBorder(
+										BevelBorder.RAISED, Color.WHITE,
+										Color.BLACK),
+								BorderFactory
 										.createEtchedBorder(EtchedBorder.LOWERED)));
 					}
 					lastColor = j;
-					buttons[j].setBorder(BorderFactory
-							.createLineBorder(Color.BLACK, 5));
-
+					buttons[j].setBorder(BorderFactory.createLineBorder(
+							Color.BLACK, 5));
 				}
 			});
 			buttons[i].setPreferredSize(new Dimension(50, 50));

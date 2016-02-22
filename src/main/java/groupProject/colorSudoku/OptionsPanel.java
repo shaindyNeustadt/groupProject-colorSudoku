@@ -1,12 +1,8 @@
 package groupProject.colorSudoku;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,15 +10,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.border.Border;
 
 public class OptionsPanel extends JPanel {
 
@@ -36,7 +29,6 @@ public class OptionsPanel extends JPanel {
 	public OptionsPanel(final SudokuPanel sudokuPanel,
 			final SudokuGenerator sudokuGenerator) {
 
-		// this.setSize(new Dimension(100, 100));
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBackground(Color.WHITE);
 		this.sudokuPanel = sudokuPanel;
@@ -187,7 +179,6 @@ public class OptionsPanel extends JPanel {
 		help.addMouseListener(new MouseListener() {
 
 			public void mouseClicked(MouseEvent arg0) {
-
 			}
 
 			public void mouseEntered(MouseEvent arg0) {
