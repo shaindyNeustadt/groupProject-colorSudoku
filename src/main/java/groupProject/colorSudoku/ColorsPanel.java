@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
@@ -19,87 +20,58 @@ public class ColorsPanel extends JPanel {
 	private Color[] colorArray;
 
 	public ColorsPanel() {
-
 		colorArray = new Color[10];
-		colorArray[0] = new Color(255, 0, 217);
-		colorArray[1] = Color.ORANGE;
-		colorArray[2] = Color.YELLOW;
-		colorArray[3] = Color.GREEN;
-		colorArray[4] = Color.BLUE;
-		colorArray[5] = Color.CYAN;
-		colorArray[6] = Color.PINK;
-		colorArray[7] = Color.WHITE;
-		colorArray[8] = Color.BLACK;
-		colorArray[9] = Color.getHSBColor(0, 0, .9F);
+		colorArray[0] = new Color(255, 51, 51);
+		colorArray[1] = new Color(255, 153, 51);
+		colorArray[2] = new Color(255, 255, 51);
+		colorArray[3] = new Color(153, 255, 51);
+		colorArray[4] = new Color(51, 255, 255);
+		colorArray[5] = new Color(51, 153, 255);
+		colorArray[6] = new Color(153, 51, 255);
+		colorArray[7] = new Color(255, 51, 153);
+		colorArray[8] = new Color(160, 160, 160);
+		colorArray[9] = Color.WHITE;
+		setPreferredSize(new Dimension(200, 55));
 
-		this.setLayout(new FlowLayout());
+		setLayout(new FlowLayout());
+		setBackground(Color.WHITE);
+
 		this.buttons = new JButton[9];
+		JLabel label = new JLabel("");
+		label.setPreferredSize(new Dimension(90, 55));
+		add(label);
 
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i] = new JButton();
 			buttons[i].setBackground(colorArray[i]);
 			buttons[i].setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.WHITE, Color.BLACK),
-					BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)));
+
+			BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.WHITE,
+					Color.BLACK), BorderFactory
+					.createEtchedBorder(EtchedBorder.LOWERED)));
+
 			final int j = i;
 			buttons[i].addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent arg0) {
 					if (lastColor != 9) {
-						buttons[lastColor].setBorder(BorderFactory.createLineBorder(colorArray[lastColor]));
+						buttons[lastColor].setBorder(BorderFactory.createCompoundBorder(
+								BorderFactory.createBevelBorder(
+										BevelBorder.RAISED, Color.WHITE,
+										Color.BLACK),
+								BorderFactory
+										.createEtchedBorder(EtchedBorder.LOWERED)));
 					}
 					lastColor = j;
-					buttons[j].setBorder(BorderFactory.createLineBorder(Color.RED));
-					
+					buttons[j].setBorder(BorderFactory.createLineBorder(
+							Color.BLACK, 5));
+
 				}
 			});
 			buttons[i].setPreferredSize(new Dimension(50, 50));
 			add(buttons[i]);
 		}
 	}
-
-	/**
-	 * buttons[1] = new JButton(); buttons[1].setBackground(Color.ORANGE);
-	 * buttons[1].addActionListener(new ActionListener() {
-	 * 
-	 * public void actionPerformed(ActionEvent arg0) { colorChosen =
-	 * Color.ORANGE; } }); buttons[2] = new JButton();
-	 * buttons[2].setBackground(Color.YELLOW); buttons[2].addActionListener(new
-	 * ActionListener() {
-	 * 
-	 * public void actionPerformed(ActionEvent arg0) { colorChosen =
-	 * Color.YELLOW; } }); buttons[3] = new JButton();
-	 * buttons[3].setBackground(Color.GREEN); buttons[3].addActionListener(new
-	 * ActionListener() {
-	 * 
-	 * public void actionPerformed(ActionEvent arg0) { colorChosen =
-	 * Color.GREEN; } }); buttons[4] = new JButton();
-	 * buttons[4].setBackground(Color.BLUE); buttons[4].addActionListener(new
-	 * ActionListener() {
-	 * 
-	 * public void actionPerformed(ActionEvent arg0) { colorChosen = Color.BLUE;
-	 * } }); buttons[5] = new JButton(); buttons[5].setBackground(Color.CYAN);
-	 * buttons[5].addActionListener(new ActionListener() {
-	 * 
-	 * public void actionPerformed(ActionEvent arg0) { colorChosen = Color.CYAN;
-	 * } }); buttons[6] = new JButton(); buttons[6].setBackground(Color.PINK);
-	 * buttons[6].addActionListener(new ActionListener() {
-	 * 
-	 * public void actionPerformed(ActionEvent arg0) { colorChosen = Color.PINK;
-	 * } }); buttons[7] = new JButton(); buttons[7].setBackground(Color.WHITE);
-	 * buttons[7].addActionListener(new ActionListener() {
-	 * 
-	 * public void actionPerformed(ActionEvent arg0) { colorChosen =
-	 * Color.WHITE; } }); buttons[8] = new JButton();
-	 * buttons[8].setBackground(Color.BLACK); buttons[8].addActionListener(new
-	 * ActionListener() {
-	 * 
-	 * public void actionPerformed(ActionEvent arg0) { colorChosen =
-	 * Color.BLACK; } });
-	 * 
-	 * for (int i = 0; i < buttons.length; i++) {
-	 * buttons[i].setPreferredSize(new Dimension(50, 50)); add(buttons[i]); } }
-	 */
 
 	public int getLastColor() {
 		return lastColor + 1;
