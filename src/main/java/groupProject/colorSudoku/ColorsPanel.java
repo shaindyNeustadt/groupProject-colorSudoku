@@ -65,7 +65,6 @@ public class ColorsPanel extends JPanel {
 					lastColor = j;
 					buttons[j].setBorder(BorderFactory.createLineBorder(
 							Color.BLACK, 5));
-
 				}
 			});
 			buttons[i].setPreferredSize(new Dimension(50, 50));
@@ -75,5 +74,9 @@ public class ColorsPanel extends JPanel {
 
 	public int getLastColor() {
 		return lastColor + 1;
+	}
+
+	public Color[] getColorArray() {
+		return colorArray;
 	}
 }

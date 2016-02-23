@@ -6,6 +6,7 @@ import java.awt.Container;
 import javax.swing.JFrame;
 
 public class Sudoku extends JFrame {
+
 	private SudokuPanel sudokuPanel;
 	private SudokuGenerator sudokuGenerator;
 	private ButtonsPanel buttonsPanel;
