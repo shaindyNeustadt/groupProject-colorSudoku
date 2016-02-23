@@ -2,8 +2,6 @@ package groupProject.colorSudoku;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -19,8 +17,7 @@ public class SudokuPanel extends JPanel {
 	private Box[][] boxes;
 	private SudokuGenerator sudoku;
 
-	public SudokuPanel(final SudokuGenerator sudokuGenerator,
-			final ColorsPanel colorsPanel) {
+	public SudokuPanel(final SudokuGenerator sudokuGenerator, final ColorsPanel colorsPanel) {
 		setLayout(new GridLayout(3, 3));
 		setBackground(Color.WHITE);
 
@@ -30,8 +27,7 @@ public class SudokuPanel extends JPanel {
 			for (int y = 0; y < 3; y++) {
 				panels[x][y] = new JPanel();
 				panels[x][y].setLayout(new GridLayout(3, 3));
-				panels[x][y].setBorder(BorderFactory.createLineBorder(
-						Color.BLACK, 3));
+				panels[x][y].setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 				add(panels[x][y]);
 			}
 		}
@@ -41,26 +37,26 @@ public class SudokuPanel extends JPanel {
 			for (int y = 0; y < 9; y++) {
 				boxes[x][y] = new Box(colorsPanel);
 				boxes[x][y].setBorder(BorderFactory.createCompoundBorder(
-						BorderFactory.createBevelBorder(BevelBorder.RAISED,
-								Color.WHITE, Color.BLACK), BorderFactory
-								.createEtchedBorder(EtchedBorder.LOWERED)));
+						BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.WHITE, Color.BLACK),
+						BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)));
 
 				final int i = x;
 				final int j = y;
-				boxes[x][y].addActionListener(new ActionListener() {
-
-					public void actionPerformed(ActionEvent arg0) {
-						boxes[i][j].setNumber(colorsPanel.getLastColor());
-						if (colorsPanel.getLastColor() != 10) {
-							sudoku.setNumber(i, j, colorsPanel.getLastColor());
-						}
-					}
-
-				});
-
+			
 				boxes[x][y].addMouseListener(new MouseListener() {
-
 					public void mouseClicked(MouseEvent arg0) {
+						if (SwingUtilities.isRightMouseButton(arg0)) {
+							if (boxes[i][j].isEnabled()) {
+								boxes[i][j].setNumber(10);
+								sudoku.setNumber(i, j, 0);
+							}
+						} else {
+
+							boxes[i][j].setNumber(colorsPanel.getLastColor());
+							if (colorsPanel.getLastColor() != 10) {
+								sudoku.setNumber(i, j, colorsPanel.getLastColor());
+							}
+						}
 					}
 
 					public void mouseEntered(MouseEvent arg0) {
@@ -73,11 +69,6 @@ public class SudokuPanel extends JPanel {
 					}
 
 					public void mouseReleased(MouseEvent arg0) {
-						if (SwingUtilities.isRightMouseButton(arg0)) {
-							if (boxes[i][j].isEnabled()) {
-								boxes[i][j].setNumber(10);
-							}
-						}
 					}
 				});
 				panels[x / 3][y / 3].add(boxes[x][y]);

@@ -9,6 +9,7 @@ public class SudokuGenerator {
 	public static final int BOARD_HEIGHT = 9;
 	int[][] board;
 	private boolean restart;
+	private int difficulty;
 
 	public SudokuGenerator() {
 		board = new int[BOARD_WIDTH][BOARD_HEIGHT];
@@ -20,6 +21,7 @@ public class SudokuGenerator {
 		nextCell(0, 0);
 		makeHoles(difficulty);
 		restart = !restart;
+		this.difficulty = difficulty;
 		return board;
 	}
 

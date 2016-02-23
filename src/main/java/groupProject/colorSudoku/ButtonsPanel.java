@@ -60,19 +60,19 @@ public class ButtonsPanel extends JPanel {
 	public void setUpPicture() {
 		this.picture1 = new JLabel();
 		this.picture1.setPreferredSize(new Dimension(150, 50));
-		this.picture1.setIcon(new ImageIcon(new ImageIcon("./image1.jpg")
-				.getImage().getScaledInstance(150, 50, Image.SCALE_SMOOTH)));
+		this.picture1.setIcon(new ImageIcon(new ImageIcon("./image1.jpg").getImage().getScaledInstance(150, 50,
+				Image.SCALE_SMOOTH)));
 		this.picture2 = new JLabel();
 		this.picture2.setPreferredSize(new Dimension(150, 50));
-		this.picture2.setIcon(new ImageIcon(new ImageIcon("./image2.jpg")
-				.getImage().getScaledInstance(150, 50, Image.SCALE_SMOOTH)));
+		this.picture2.setIcon(new ImageIcon(new ImageIcon("./image2.jpg").getImage().getScaledInstance(150, 50,
+				Image.SCALE_SMOOTH)));
 	}
 
 	public void setUpChecker() {
 		check = new JLabel();
 		check.setBackground(Color.WHITE);
-		check.setIcon(new ImageIcon(new ImageIcon("./check.jpg").getImage()
-				.getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+		check.setIcon(new ImageIcon(new ImageIcon("./check.jpg").getImage().getScaledInstance(50, 50,
+				Image.SCALE_SMOOTH)));
 		check.addMouseListener(new MouseListener() {
 
 			public void mouseClicked(MouseEvent arg0) {
@@ -135,24 +135,18 @@ public class ButtonsPanel extends JPanel {
 	public void setTimer() {
 		timerLabel = new JLabel();
 		timerLabel.setBackground(Color.WHITE);
-		// timerLabel.setIcon(new ImageIcon(new ImageIcon("./timer2.png")
-		// .getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
-		// timerLabel.setIconTextGap(80);
 		timer = new Timer(1000, new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				if (sudokuGenerator.restart()) {
 					timerCount = -1;
 					sudokuGenerator.setRestart();
-				}
-				;
+					}
 				timerCount++;
 
 				long hours = TimeUnit.MINUTES.toHours(timerCount);
-				long remainMinute = timerCount
-						- TimeUnit.HOURS.toMinutes(hours);
-				timerLabel.setText(String.format("      " + "%02d", hours)
-						+ ":" + String.format("%02d", remainMinute));
+				long remainMinute = timerCount - TimeUnit.HOURS.toMinutes(hours);
+				timerLabel.setText(String.format("      " + "%02d", hours) + ":" + String.format("%02d", remainMinute));
 				timerLabel.setFont(new Font("Calibri", Font.BOLD, 25));
 			}
 
