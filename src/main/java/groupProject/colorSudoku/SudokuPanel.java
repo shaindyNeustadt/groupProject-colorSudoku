@@ -42,7 +42,7 @@ public class SudokuPanel extends JPanel {
 
 				final int i = x;
 				final int j = y;
-			
+
 				boxes[x][y].addMouseListener(new MouseListener() {
 					public void mouseClicked(MouseEvent arg0) {
 						if (SwingUtilities.isRightMouseButton(arg0)) {
@@ -75,6 +75,7 @@ public class SudokuPanel extends JPanel {
 			}
 		}
 		setNewBoard(0);
+		sudoku.setNumber(0, 0, 0);
 	}
 
 	public void setNewBoard(int difficulty) {

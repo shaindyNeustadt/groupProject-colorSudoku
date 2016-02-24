@@ -9,8 +9,9 @@ public class Sudoku extends JFrame {
 
 	private SudokuPanel sudokuPanel;
 	private SudokuGenerator sudokuGenerator;
-	private ButtonsPanel buttonsPanel;
+	private OptionsPanel optionsPanel;
 	private ColorsPanel colorsPanel;
+	private DifficultiesPanel difficultiesPanel;
 
 	public Sudoku() {
 		setTitle("COLORKU");
@@ -25,14 +26,13 @@ public class Sudoku extends JFrame {
 		sudokuGenerator = new SudokuGenerator();
 		colorsPanel = new ColorsPanel();
 		sudokuPanel = new SudokuPanel(sudokuGenerator, colorsPanel);
-		buttonsPanel = new ButtonsPanel(sudokuGenerator);
-		OptionsPanel optionsPanel = new OptionsPanel(sudokuPanel,
-				sudokuGenerator);
+		optionsPanel = new OptionsPanel(sudokuGenerator);
+		difficultiesPanel = new DifficultiesPanel(sudokuPanel, sudokuGenerator);
 
 		container.add(sudokuPanel, BorderLayout.CENTER);
 		container.add(colorsPanel, BorderLayout.SOUTH);
-		container.add(optionsPanel, BorderLayout.WEST);
-		container.add(buttonsPanel, BorderLayout.NORTH);
+		container.add(difficultiesPanel, BorderLayout.WEST);
+		container.add(optionsPanel, BorderLayout.NORTH);
 	}
 
 	public static void main(String[] args) {
