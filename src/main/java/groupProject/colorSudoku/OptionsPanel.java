@@ -143,13 +143,11 @@ public class OptionsPanel extends JPanel {
 					sudokuGenerator.setRestart();
 				}
 				timerCount++;
-
 				long hours = TimeUnit.MINUTES.toHours(timerCount);
 				long remainMinute = timerCount - TimeUnit.HOURS.toMinutes(hours);
 				timerLabel.setText(String.format("      " + "%02d", hours) + ":" + String.format("%02d", remainMinute));
 				timerLabel.setFont(new Font("Calibri", Font.BOLD, 25));
 			}
-
 		});
 		timer.start();
 	}
